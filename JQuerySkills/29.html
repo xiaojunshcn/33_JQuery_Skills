@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html>
+  <head>
+   <title>jQuery showLoading example</title>
+   <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+   <script type="text/javascript" src="js/jqueryWaitAnimation.js"></script>
+   <style type="text/css">
+			a {
+			  color: blue;
+			  cursor:pointer;
+			  text-decoration: underline;
+			}
+		 
+			div.instructions_container {
+			   float: left;
+			   width: 350px;
+			   margin-right: 50px;
+			}
+			div#loadingDiv{
+				background-color: #EEEEEE;
+				opacity: 0.2;
+				filter: alpha(opacity = 10);
+			}
+
+		 .loading-indicator {
+			height: 80px;
+			width: 80px;
+			background: url( 'images/loading2.gif' );
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		.loading-indicator-overlay {
+			background-color: #FFFFFF;
+			opacity: 0.6;
+			filter: alpha(opacity = 60);
+		}
+   </style>
+   <script type="text/javascript">
+	jQuery(document).ready(
+		function() {
+ 			jQuery('input[type=button].appr_save').click (
+				function () {
+					jQuery('#loadingDiv').showLoading();
+				}
+			);
+			
+			jQuery('#appr_save3').click (
+				function () {
+					jQuery('#loadingDiv').showLoading();
+				}
+			);
+  
+ 		  jQuery('a.needShowLoading').click(
+ 			function() {
+				jQuery('#loadingDiv').showLoading();
+			}
+ 		  );
+ 		}
+ 	);
+    </script>
+  </head>
+  <body>
+	<div id="loadingDiv" align="center" style="width:100%; height:100%; display:none;">
+		<br /><br /><br /><br /><br /><br />
+		<img src="./images/loading2.gif" /> 
+	</div>
+	<input type="button" class="appr_save" value="Show Loading via a button's class"><br/>
+	<input type="button" id="appr_save3" value="Show Loading via a button' id"><br/>
+	<a class="needShowLoading">Show loading via a link</a><br/>
+  </body>
+</html>

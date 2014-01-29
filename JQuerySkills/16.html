@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title> 遍历元素</title>
+		<script type="text/javascript" src="js/jquery-1.10.2.js"> </script>
+		<style type="text/css">
+			body{font-size:13px}
+			img{border:solid 1px #ccc;
+			padding:3px;margin:5px;width:143px;height:101px}
+		</style>
+		<script type="text/javascript">
+			$(function() {
+				$("img").each(function(index) {
+					// 根据形参index 设置元素的title 属性
+					this.title = " 第" + index + " 幅图片，alt 内容是" + this.alt;
+				})
+			})
+		</script>
+	</head>
+	<body>
+	<p>
+		<img src="images/image01.jpg" alt=" 第0 幅画" />
+		<img src="images/image02.jpg" alt=" 第1 幅画" />
+		<img src="images/image03.jpg" alt=" 第2 幅画" />
+	</p>
+	</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<style type="text/css"> 
+		.newDiv{
+			width:100px;
+			height:100px;
+			border:1px solid #EEE;
+			position:absolute;
+			background:#fff;
+			filter:alpha(opacity=40);
+			opacity:0.4;
+			z-index:2;
+			display:none;
+			cursor:move;
+		}
+		.see_info{
+			width:400px;
+			height:400px;
+			position:absolute;
+			top:0px;
+			left:500px;
+			z-index:2;
+			display:none;
+		}
+
+	</style>
+</head>
+<body>
+
+	<h1>jquery放大图片.</h1>
+	<div class="thumb">
+		<img class="pic" src="images/1.jpg" style="max-width:300px;cursor:move;" />
+		<img src="images/1.jpg" style="display:none;" class="img_hide" />
+		<div class='newDiv'></div>
+	</div> 
+	 <!-- 图像详情-->
+	<div class="see_info"></div>
+ 
+		<script type="text/javascript"> 
+
+			$(function(){
+						
+					$(".thumb").hover(function(){
+							$(".newDiv").show();
+							$(".see_info").show();
+							//获得图片原始图对象
+						var phObj=$(".img_hide");
+						var s=phObj.attr("src");	
+						var str =s.split("\\");
+						var img=str.join();
+						$(".see_info").css("background","url("+img+") no-repeat");
+							//获取大图与小图的比例
+							var perX=phObj.width()/$(".pic").width();
+							var perY=phObj.height()/$(".pic").height();
+						$(this).mousemove(function(e){
+							
+							//判断鼠标在图片上的位置
+							var pX=e.pageX-$(this).offset().left;
+							var pY=e.pageY-$(this).offset().top;
+							//获取大图应该的位置
+							var bigX=pX*perX-$(".see_info").width()/2;
+							var bigY=pY*perY-$(".see_info").height()/2;
+							
+							//获取小图的top
+							var tT=$(this).offset().top;
+							var tL=$(this).css("left");
+							
+							//让鼠标在div中间
+							var top=e.pageY-$(".newDiv").height()/2;
+							//让鼠标在div中间
+							var left=e.pageX-$(".newDiv").width()/2;
+							
+							
+							//最大高度
+							var div_max_top=parseInt($(this).offset().top)+parseInt($(this).height())-$(".newDiv").height();
+							
+							//最低高度
+							var div_min_top=$(this).offset().top;
+							//最大宽度
+							var div_max_left=parseInt($(this).offset().left)+parseInt($(this).width())-$(".newDiv").width();
+							//最小宽度
+							var div_min_left=$(this).offset().left;
+							
+							if(top<=div_min_top){
+								top=div_min_top;
+							}
+							if(top>=div_max_top){
+								top=div_max_top;
+							}
+							if(left<=div_min_left){
+								left=div_min_left;
+							}
+							if(left>=div_max_left){
+								left=div_max_left;	
+							}
+							
+							//设置鼠标图div的位置
+							$(".newDiv").css({
+								"top":+top+"px",
+								"left":+left+"px"
+							});
+							//设置大图图位置
+							$(".see_info").css({
+								"background-position":+-bigX+"px"+" "+-bigY+"px"
+							});
+						});
+					}, function(){
+						//隐藏div
+						$(".see_info").hide();
+						$(".newDiv").hide();	
+					});
+				
+			 });
+		</script>
+
+		</div>
+
+	</body>
+</html>
+ 

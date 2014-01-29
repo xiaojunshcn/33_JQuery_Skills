@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title> 复制元素节点</title>
+		<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+		<style type="text/css">
+			img{border:solid 1px #ccc;padding:3px;margin:5px}
+		</style>
+		<script type="text/javascript">
+			$(function() {
+				$("img").click(function() {
+					//clone(true)表示点击clone出来的图片后，还能继续有clone新图片功能
+					//如果使用不带参数的clone() 方法，那么只有单击原图片才可以复制新的图片元素，新复制的图片元素不具有任何功能
+					$(this).clone(true).appendTo("span");
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<span><img title=" 封面" src="images/logo.jpg" /></span>
+	</body>
+</html>
